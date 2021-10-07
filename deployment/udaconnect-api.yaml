@@ -31,7 +31,7 @@ spec:
         service: udaconnect-api
     spec:
       containers:
-      - image: udacity/nd064-udaconnect-api:latest
+      - image: jarich/udaconnect-api:v1.0
         name: udaconnect-api
         imagePullPolicy: Always
         env:

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-prod-deployment
+  labels:
+    app: kafka-prod-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-prod
+      tag: python
+  template:
+    metadata:
+      labels:
+        app: kafka-prod
+        tag: python
+    spec:
+      containers:
+      - name: kafka-prod
+        image: jarich/kafka-prod:v1.0
+        ports:
+        - containerPort: 30002
+        envFrom:
+          - configMapRef:
+              name: kafka-prod-configmap

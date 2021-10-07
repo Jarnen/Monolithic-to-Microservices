@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-cons-deployment
+  labels:
+    app: kafka-cons-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-cons
+      tag: python
+  template:
+    metadata:
+      labels:
+        app: kafka-cons
+        tag: python
+    spec:
+      containers:
+      - name: kafka-cons
+        image: jarich/kafka-cons:v1.0
+        ports:
+          - containerPort: 30002
+        envFrom:
+          - configMapRef:
+              name: kafka-cons-configmap
