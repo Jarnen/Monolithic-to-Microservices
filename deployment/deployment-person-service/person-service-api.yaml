@@ -31,7 +31,7 @@ spec:
         service: udaconnect-person-svc-api
     spec:
       containers:
-      - image: jarich/udaconnect-person-svc-api:v1.02
+      - image: jarich/udaconnect-person-svc-api:v1.03
         name: udaconnect-person-svc-api
         imagePullPolicy: Always
         env:
