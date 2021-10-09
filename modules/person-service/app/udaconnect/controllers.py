@@ -1,8 +1,8 @@
-from .models import Person
-from .schemas import (
+from app.udaconnect.models import Person
+from app.udaconnect.schemas import (
     PersonSchema,
 )
-from services import PersonService
+from app.udaconnect.services import PersonService
 from flask import request
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
@@ -10,7 +10,7 @@ from typing import Optional, List
 
 DATE_FORMAT = "%Y-%m-%d"
 
-api = Namespace("Persons", description="Connections via geolocation.")  # noqa
+api = Namespace("Persons API", description="Connections via geolocation.")  # noqa
 
 
 # TODO: This needs better exception handling

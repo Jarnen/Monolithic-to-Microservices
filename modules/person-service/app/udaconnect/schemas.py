@@ -1,4 +1,4 @@
-from .models import Person
+from app.udaconnect.models import Person
 from marshmallow import Schema, fields
 
 

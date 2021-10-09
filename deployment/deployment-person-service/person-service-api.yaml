@@ -9,7 +9,7 @@ spec:
   - name: "5000"
     port: 5000
     targetPort: 5000
-    nodePort: 30001
+    nodePort: 30003
   selector:
     service: udaconnect-person-svc-api
   type: NodePort
@@ -19,7 +19,7 @@ kind: Deployment
 metadata:
   labels:
     service: udaconnect-person-svc-api
-  name: udaconnect-person-svc-api-deployment
+  name: udaconnect-person-svc-api
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ spec:
         service: udaconnect-person-svc-api
     spec:
       containers:
-      - image: jarich/udaconnect-api:v1.0
+      - image: jarich/udaconnect-person-svc-api:v1.02
         name: udaconnect-person-svc-api
         imagePullPolicy: Always
         env:
