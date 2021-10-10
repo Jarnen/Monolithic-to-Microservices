@@ -6,10 +6,10 @@ metadata:
   name: udaconnect-connection-svc-api
 spec:
   ports:
-  - name: "5003"
-    port: 5003
-    targetPort: 5003
-    nodePort: 30003
+  - name: "5000"
+    port: 5000
+    targetPort: 5000
+    nodePort: 30004
   selector:
     service: udaconnect-connection-svc-api
   type: NodePort
@@ -19,7 +19,7 @@ kind: Deployment
 metadata:
   labels:
     service: udaconnect-connection-svc-api
-  name: udaconnect-connection-svc-api-deployment
+  name: udaconnect-connection-svc-api
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ spec:
         service: udaconnect-connection-svc-api
     spec:
       containers:
-      - image: jarich/udaconnect-connection-svc-api:v1.0
+      - image: jarich/udaconnect-connection-svc-api:v1.01
         name: udaconnect-connection-svc-api
         imagePullPolicy: Always
         env:

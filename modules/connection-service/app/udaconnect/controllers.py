@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from .schemas import (
+from app.udaconnect.schemas import (
     ConnectionSchema,
 )
-from .services import ConnectionService
+from app.udaconnect.services import ConnectionService
 from flask import request
 from flask_accepts import responds
 from flask_restx import Namespace, Resource
@@ -11,7 +11,7 @@ from typing import Optional, List
 
 DATE_FORMAT = "%Y-%m-%d"
 
-api = Namespace("UdaConnect Connection", description="Connections via geolocation.")  # noqa
+api = Namespace("UdaConnect Connection API", description="Connections via geolocation.")  # noqa
 
 
 # TODO: This needs better exception handling
