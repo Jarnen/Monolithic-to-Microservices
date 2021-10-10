@@ -6,10 +6,10 @@ metadata:
   name: udaconnect-location-svc-api
 spec:
   ports:
-  - name: "5004"
-    port: 5004
-    targetPort: 5004
-    nodePort: 30004
+  - name: "5000"
+    port: 5000
+    targetPort: 5000
+    nodePort: 30005
   selector:
     service: udaconnect-location-svc-api
   type: NodePort
@@ -19,7 +19,7 @@ kind: Deployment
 metadata:
   labels:
     service: udaconnect-location-svc-api
-  name: udaconnect-location-svc-api-deployment
+  name: udaconnect-location-svc-api
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ spec:
         service: udaconnect-location-svc-api
     spec:
       containers:
-      - image: jarich/udaconnect-location-svc-api:v1.0
+      - image: jarich/udaconnect-location-svc-api:v1.05
         name: udaconnect-location-svc-api
         imagePullPolicy: Always
         env:
