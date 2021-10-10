@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: udaconnect-app-test
+  name: udaconnect-app-test
+spec:
+  ports:
+  - name: "3000"
+    port: 3000
+    targetPort: 3000
+    nodePort: 30006
+  selector:
+    service: udaconnect-app-test
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udaconnect-app-test
+  name: udaconnect-app-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udaconnect-app-test
+  template:
+    metadata:
+      labels:
+        service: udaconnect-app-test
+    spec:
+      containers:
+      - image: jarich/udaconnect-frontend:v1.01
+        name: udaconnect-app-test
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "64m"
+          limits:
+            memory: "256Mi"
+            cpu: "256m"
+      restartPolicy: Always
