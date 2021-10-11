@@ -10,15 +10,15 @@ import grpc
 import person_location_event_pb2
 import person_location_event_pb2_grpc
 
-kafka_url = os.environ["KAFKA_URL"]
-kafka_topic = os.environ["KAFKA_TOPIC"]
+KAFKA_URL = os.environ["KAFKA_URL"]
+KAFKA_TOPIC = os.environ["KAFKA_TOPIC"]
 
-logging.info('connecting to kafka ', kafka_url)
-print('p_connecting to kafka ', kafka_url)
-logging.info('connecting to kafka topic ', kafka_topic)
-print('p_connecting to kafka topic ', kafka_topic)
+logging.info('Connecting to kafka ', KAFKA_URL)
+print('Connecting to kafka ', KAFKA_URL)
+logging.info('Connecting to kafka topic ', KAFKA_TOPIC)
+print('Connecting to kafka topic ', KAFKA_TOPIC)
 
-producer = KafkaProducer(bootstrap_servers=kafka_url)
+producer = KafkaProducer(bootstrap_servers=KAFKA_URL)
 
 
 class PersonLocationEventServicer(person_location_event_pb2_grpc.ItemServiceServicer):
@@ -33,14 +33,14 @@ class PersonLocationEventServicer(person_location_event_pb2_grpc.ItemServiceServ
         logging.info('processing entity ', request_value)
 
         person_encode_data = json.dumps(request_value, indent=2).encode('utf-8')
-        producer.send(kafka_topic, person_encode_data)
+        producer.send(KAFKA_TOPIC, person_encode_data)
         return person_location_event_pb2.PersonLocationEventMessage(**request_value)
 
 
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
 person_location_event_pb2_grpc.add_ItemServiceServicer_to_server(PersonLocationEventServicer(), server)
 
-logging.info('starting on port 5005')
+logging.info('Starting on port 5005')
 server.add_insecure_port('[::]:5005')
 server.start()
 server.wait_for_termination()

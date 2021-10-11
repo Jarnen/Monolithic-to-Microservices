@@ -9,7 +9,7 @@ Simulates user mobiles gps sending coordinates to grpc
 
 print("Sending coordinates...")
 
-channel = grpc.insecure_channel("127.0.0.1:30003")
+channel = grpc.insecure_channel("127.0.0.1:30007")
 stub = person_location_event_pb2_grpc.ItemServiceStub(channel)
 
 # Sample payload data
