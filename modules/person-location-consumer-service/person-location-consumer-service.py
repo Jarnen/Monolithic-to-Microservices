@@ -1,10 +1,11 @@
 import json
+import logging
 import os
-
+import time
 from kafka import KafkaConsumer
 
 TOPIC_NAME = os.environ["KAFKA_TOPIC"]
-print('started listening ' + TOPIC_NAME)
+logging.info('started listening ' + TOPIC_NAME)
 
 DB_USERNAME = os.environ["DB_USERNAME"]
 DB_PASSWORD = os.environ["DB_PASSWORD"]
@@ -28,12 +29,15 @@ def save_in_db(location):
     insert = "INSERT INTO location (person_id, coordinate) VALUES ({}, ST_Point({}, {}))" \
         .format(person_id, latitude, longitude)
 
-    print(insert)
+    logging.info(insert)
     conn.execute(insert)
 
 
-for item in consumer:
-    message = item.value.decode('utf-8')
-    print('{}'.format(message))
-    person_location_message = json.loads(message)
-    save_in_db(person_location_message)
+while True:
+    for item in consumer:
+        message = item.value.decode('utf-8')
+        logging.info('Processing message ', message)
+        person_location_message = json.loads(message)
+        save_in_db(person_location_message)
+    logging.info("Waiting for new locations from person location events service")
+    time.sleep(300)
