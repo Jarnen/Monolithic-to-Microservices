@@ -97,8 +97,8 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 1. `kubectl apply -f deployment/db-configmap.yaml` - Set up environment variables for the pods
 2. `kubectl apply -f deployment/db-secret.yaml` - Set up secrets for the pods
 3. `kubectl apply -f deployment/postgres.yaml` - Set up a Postgres database running PostGIS
-4. `kubectl apply -f deployment/udaconnect-api.yaml` - Set up the service and deployment for the API
-5. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
+4. `kubectl apply -f deployment/udaconnect-api.yaml` - Set up the service and deployment for the API - NOTE: NO NEED TO RUN THIS UNLESS YOU WANT TO COMPARE SERVICES 
+5. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app - NOTE THE DOCKER IMAGE FOR CONTAINER IS FROM THE TEST MODULE (./module/frontend-app-test)
 6. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
 7. `kubectl apply -f deployment/deployment-connection-service/connection-service-api.yaml` - Set up the REST API Connection service
 8. `kubectl apply -f deployment/deployment-location-service/location-service-api.yaml`- Set up the REST API Location service
