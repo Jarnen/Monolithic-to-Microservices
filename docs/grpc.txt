@@ -1,0 +1,29 @@
+gRPC documentation of Person Location Event Service and How to Make a Sample Request
+************************************************************************************
+
+The request has a payload with userId, latitude and longitude.
+
+To make a sample request, please refer to the below file.
+    -> modules/person-location-event-service/mobile_gps_simulator.py
+
+This python file can be used to simulate a mobile gps app to send person's location via gRPC to Kafka.
+
+'''
+syntax = "proto3";
+
+message PersonLocationEventMessage {
+  int32 userId = 1;
+  int32 latitude = 2;
+  int32 longitude = 3;
+}
+
+service ItemService {
+  rpc Create(PersonLocationEventMessage) returns (PersonLocationEventMessage);
+}
+'''
+
+It can be executed with 'python modules/person-location-event-service/mobile_gps_simulator.py' on the terminal.
+
+This sends the payload to Kafka and then is consumed by 'person-location-consumer service' to be stored in database.
+
+

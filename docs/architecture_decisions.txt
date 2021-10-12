@@ -1,0 +1,30 @@
+  Justification of the Architecture Design and Message Passing Techniques Used.
+********************************************************************************
+The monolith application is refactored into microservices applications as below;
+1. REST API - Person Service
+ - This service used by frontend application to enter and retrieve persons details into database and from the database
+   respectively. REST API is used so it can be easily expanded or implemented by other developers. It is separated from
+   other services and implemented to improve performance also due to its caching ability.
+2. REST API - Connection Service
+ - This is a client-server restful api service. It simply retrieve peoples' information living close to each
+   other from the backend database and presents to the frontend application. This service is used frontend application to
+   display the connections. We used REST framework here so it can be easily implemented by other developers. Also can
+   use caching ability to improve performance.
+3. REST API - Location Service
+ - This service is supposed to be used by frontend app to retrieve current locations recorded in the database. It is
+   also a client-server restful api. Thus, it can use restful api caching ability to improve performance.
+4. GRPC Service - Person Location Event Service
+ - This is a GRPC service. GRPC is used here to enforced data formats used for the location details. Since it will be
+   used by something like a mobile to collect location data, we need a service that is fast and reduced overhead. Hence,
+   GRPC is a suitable message passing technique implemented here. It collects the locations information of a person
+   and broadcasts to Kafka, our message broker.
+5. Kafka and Zookeeper
+ - Kafka is used as the message broker because it is good at handling large volumes of data generated continuously as
+   events.Since a person can move around, we would like to get all the possible places he/she visited to suggest
+   connections. We do not want to overload our database, hence Kafka is used to handled many streams of locations captured.
+ - Zookeeper manages the Kafka by keeping track of the consumed location events.
+6. Person Location Consumer Service
+ - This is a simple python Kafka consumer service that checks the Kafka topic of incoming locations and enters
+   them into backend database. This service runs every 300 seconds and wait for new incoming locations from the
+   GRPC Service - Person Location Event Service. And thus, helps to reduce workloads of the backend postgres sql database.
+
