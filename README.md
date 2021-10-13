@@ -104,14 +104,14 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 8. `kubectl apply -f deployment/deployment-location-service/location-service-api.yaml`- Set up the REST API Location service
 9. `kubectl apply -f deployment/deployment-person-service/person-service-api.yaml` - Set up the REST API Person service
 10. Install Kafka by following the below steps:
-    i. Open a new terminal and type `vagrant ssh` to login to the vagrant machine and change user to root.
-    ii. `curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3` - To install Helm
-    iii. `chmod 700 get_helm.sh` - change mode to executable
-    iv. `./get_helm.sh` - to install Helm
-    v. `helm repo add bitnami https://charts.bitnami.com/bitnami` - add the charts
-    vi. `helm install kafka-release bitnami/kafka` - Install Kafka
-    vii. After above installation it should an output with Kafka installation details of the kafka port and cluster.
-    viii. `kafka-release-0.kafka-release-headless.default.svc.cluster.local:9092` - The Kafka DNS and port would be as this if successful installed
+    - i. Open a new terminal and type `vagrant ssh` to login to the vagrant machine and change user to root.
+    - ii. `curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3` - To install Helm
+    - iii. `chmod 700 get_helm.sh` - change mode to executable
+    - iv. `./get_helm.sh` - to install Helm
+    - v. `helm repo add bitnami https://charts.bitnami.com/bitnami` - add the charts
+    - vi. `helm install kafka-release bitnami/kafka` - Install Kafka
+    - vii. After above installation it should an output with Kafka installation details of the kafka port and cluster.
+    - viii. `kafka-release-0.kafka-release-headless.default.svc.cluster.local:9092` - The Kafka DNS and port would be as this if successful installed
 11. `kubectl apply -f deployment/deployment-person-location-event-service/` - Set up Person Location Event Service GRPC API
 12. `kubectl apply -f deployment/deployment-person-location-consumer-service/` - Set up Person Location Consumer service
 13. `kubectl apply -f deployment/deployment-frontend/` - Set up the testing frontend app. NOTE: YOU DO NOT NEED TO RUN THIS UNLESS YOU WANT TO DO SOME TESTS
