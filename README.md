@@ -2,7 +2,7 @@
 ## Overview
 ### Background
 This project is the submission for the Udaconnect Project for the Cloud Native Application Architecture Nanodegree Program
-offered by Udacity. The project starter codes can be found [here](https://github.com/udacity/nd064-c2-message-passing-projects-starter).
+offered by Udacity. The aim of this project is to refactor a monolithic application to microservices using message passing techniques such as GRPC and REST. The project starter codes can be found [here](https://github.com/udacity/nd064-c2-message-passing-projects-starter).
 
 ### Goal and Achievement
 We have refactored the application into a microservice architecture using message passing techniques.
