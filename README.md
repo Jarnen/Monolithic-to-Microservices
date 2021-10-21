@@ -141,19 +141,6 @@ You may notice the odd port numbers being served to `localhost`. [By default, Ku
 
 Connections to the Kubernetes services have been set up through a [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport). (While we would use a technology like an [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to expose our Kubernetes services in deployment, a NodePort will suffice for development.)
 
-## Development
-### New Services
-New services can be created inside of the `modules/` subfolder. You can choose to write something new with Flask, copy and rework the `modules/api` service into something new, or just create a very simple Python application.
-
-As a reminder, each module should have:
-1. `Dockerfile`
-2. Its own corresponding DockerHub repository
-3. `requirements.txt` for `pip` packages
-4. `__init__.py`
-
-### Docker Images
-`udaconnect-app` and `udaconnect-api` use docker images from `isjustintime/udaconnect-app` and `isjustintime/udaconnect-api`. To make changes to the application, build your own Docker image and push it to your own DockerHub repository. Replace the existing container registry path with your own.
-
 ## Configs and Secrets
 In `deployment/db-secret.yaml`, the secret variable is `d293aW1zb3NlY3VyZQ==`. The value is simply encoded and not encrypted -- this is ***not*** secure! Anyone can decode it to see what it is.
 ```bash
