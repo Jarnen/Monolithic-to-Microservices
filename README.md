@@ -1,4 +1,3 @@
-# UdaConnect Project
 ## Overview
 ### Background
 This project is the submission for the Udaconnect Project for the Cloud Native Application Architecture Nanodegree Program
